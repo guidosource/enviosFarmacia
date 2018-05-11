@@ -1,0 +1,11 @@
+.header-cliente{
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+
+.form-cliente form{
+    border : solid black;
+    border-radius: 20px;
+    padding: 20px;
+}

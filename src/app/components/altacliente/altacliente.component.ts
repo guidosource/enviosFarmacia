@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-altacliente',
@@ -7,7 +8,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AltaclienteComponent implements OnInit {
 
-  constructor() { }
+  form: FormGroup;
+
+  constructor() { 
+
+    this.form = new FormGroup({
+      'nombre' : new FormControl('', [Validators.required]),
+      'apellido' : new FormControl('', [Validators.required]),
+      'documento' : new FormControl('', [Validators.required]),
+      'telefono' : new FormControl('', [Validators.required]),
+      'direccion' : new FormControl('', [Validators.required]),
+      'email' : new FormControl('', [Validators.required])
+    });
+
+  }
 
   ngOnInit() {
   }

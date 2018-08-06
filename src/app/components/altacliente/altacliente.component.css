@@ -1,11 +1,9 @@
-.header-cliente{
-    margin-top: 20px;
-    margin-bottom: 20px;
+
+
+.error{
+    border: 2px solid red;
 }
 
-
-.form-cliente form{
-    border : solid black;
-    border-radius: 20px;
-    padding: 20px;
+.errdesc{
+    color : red;
 }

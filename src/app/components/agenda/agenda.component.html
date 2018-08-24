@@ -1,16 +1,16 @@
-<div class="row">
+<div class="row m-3">
   <div class="col">
+    <h1>Agenda</h1>
   </div>
   <div class="col">
-    <form class="form-inline my-2 my-lg-0">
-      <input name="search" [(ngModel)]="search"  class="form-control mr-sm-2" type="search" placeholder="Buscar" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
+    <form class="form-inline">
+      <input  #termino (keyup)="buscarClientes(termino.value)"  class="form-control mr-sm-2" type="text" placeholder="Buscar">
     </form>
   </div>
 </div>
 <div class="row">
-  <div class="col"> 
-        <table class="table agenda">
+  <div class="col table-responsive"> 
+        <table class="table">
           <thead class="thead-light">
             <tr>
               <th scope="col">Nombre</th>
@@ -22,7 +22,7 @@
               <th scope="col">Acción</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody *ngIf="!loading" >
             <tr *ngFor="let item of agenda">
               <td>{{item.nombre}}</td>
               <td>{{item.apellido}}</td>

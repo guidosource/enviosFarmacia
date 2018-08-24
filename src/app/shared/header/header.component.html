@@ -1,5 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <a class="navbar-brand" href="#">EnviosFarmacia</a>
+  
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
     aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -9,11 +10,7 @@
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
         <a class="nav-link" href="#">Home
-          <span class="sr-only">(current)</span>
         </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Link</a>
       </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
@@ -27,7 +24,6 @@
           <a (click)='showAgenda()' class="dropdown-item" href="#">
             Ver Agenda
           </a>
-          <a class="dropdown-item" href="#">Something else here</a>
         </div>
       </li>
     </ul>
@@ -67,14 +63,17 @@
      tabindex="-1" role="dialog" aria-labelledby="dialog-static-name" (onHidden)="onHiddenAgenda()">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
-      <div class="modal-header">
-        <h4 id="dialog-static-name" class="modal-title pull-left">Agenda Clientes</h4>
-        <button type="button" class="close pull-right" aria-label="Close" (click)="hideAgenda()">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
+      <!-- <div class="modal-header">
+          <i class="fas fa-address-book"></i>
+        <h4 id="dialog-static-name" class="modal-title pull-left">Agenda</h4>
+      </div> -->
       <div class="modal-body">
         <app-agenda></app-agenda>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-danger" aria-label="Close" (click)="hideAgenda()">
+          <span aria-hidden="true">&times;</span>
+        </button>
       </div>
     </div>
   </div>

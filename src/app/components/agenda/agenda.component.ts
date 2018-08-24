@@ -12,32 +12,45 @@ export class AgendaComponent implements OnInit {
   clientes: any[] = [];
   
   agenda: any[] = [];
-
-  search = '';
+  
+  loading: boolean;
 
   constructor(private _clienteServices: ClienteServices) {
+
+    this.loading = true;
 
     this._clienteServices.todosLosClientes()
     .subscribe( data => {
       this.clientes = data;
 
       this.armarAgenda(this.clientes);
-
+      
+      this.loading = false;
     });
     
    }
 
-
   ngOnInit() {
+  }
+
+  armarAgenda( data: any[]  ) {
+    this.agenda = data;
+  }
+
+  buscarClientes(termino: string) {
     
-  }
+    this.loading = true;
 
-  armarAgenda( clientes: any[]  ) {
-    this.agenda = clientes;
-  }
+    if (termino === '') {
+      this.armarAgenda(this.clientes);
+      this.loading = false;
+      return;
+    }
 
-  searchClientes() {
-    let busqueda = this.clientes;
-    busqueda.filter()
+    this._clienteServices.buscarClientes(termino)
+      .subscribe(res => {
+        this.armarAgenda(res);
+        this.loading = false;
+      });
   }
 }

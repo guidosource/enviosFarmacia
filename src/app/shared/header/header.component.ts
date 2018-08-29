@@ -10,6 +10,8 @@ import { ModalDirective } from 'ngx-bootstrap/modal';
 })
 export class HeaderComponent {
   
+  userName: String = '';
+
   @ViewChild('altaCliente') altaCliente: ModalDirective;
   altaClienteShow = false; // Bandera ;crea en el dom el modal
   errorAltaCliente = false; // Bandera ;muestra si ocurrio un error
@@ -18,7 +20,12 @@ export class HeaderComponent {
   @ViewChild('agenda') agenda: ModalDirective;
   agendaShow = false; // Bandera ;crea en el dom el modal
 
-  constructor() { }
+  constructor() {
+
+      // prueba
+      this.userName = 'San Agustin';
+
+   }
 
   showAltaCliente() {
     this.altaClienteShow = true;

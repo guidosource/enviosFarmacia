@@ -1,3 +1,73 @@
-<p>
-  pendientes works!
-</p>
+<div class="container my-5 body-pendientes">
+  <div class="row my-2">
+    <div class="col title">
+
+      <span>Envios Pendientes</span>
+
+    </div>
+
+    <div class="ml-auto mr-1 mt-1">
+
+      <button class="btn btn-sm btn-success">Nuevo Envío <i class="fas fa-cart-plus"></i></button>
+
+    </div>
+
+  </div>
+
+  <div class="my-5 row tabla-pendientes">
+    <div class="col table-responsive">
+      <table class="table table-condensed">
+        <thead>
+          <tr>
+            <th>Cliente</th>
+            <th>Dirección</th>
+            <th>Teléfono</th>
+            <th>Repartidor</th>
+            <th>Estado</th>
+            <th></th>
+          </tr>
+        </thead>
+  
+        <tbody>
+          <tr>
+            <td>Juan Perez</td>
+            <td>Juncal 3160</td>
+            <td>5555-5555</td>
+            <td>Pablo</td>
+            <td>
+              <select class="custom-select" name="" id="">
+                <option value="">PENDIENTE</option>
+                <option value="">EN REPARTO</option>
+                <option value="">ENTREGADO</option>
+                <option value="">EN REPARTO PENDIENTE</option>
+                <option value="">CANCELADO</option>
+              </select>
+            </td>
+            <td><button>+</button></td>
+          </tr>
+          <tr>
+            <td>Maria Gomez</td>
+            <td>Laprida 160</td>
+            <td>555125-25355</td>
+            <td>Pablo</td>
+            <td>
+              <select class="custom-select" name="" id="">
+                <option value="">PENDIENTE</option>
+                <option value="">EN REPARTO</option>
+                <option value="">ENTREGADO</option>
+                <option value="">EN REPARTO PENDIENTE</option>
+                <option value="">CANCELADO</option>
+              </select>
+            </td>
+            <td>
+              <button class="btn btn-dark"><i class="fas fa-save"></i></button>
+              <button alt="asd" class="btn btn-info"><i class="fas fa-asterisk"></i></button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</div>
+  

@@ -4,6 +4,10 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { ModalModule } from 'ngx-bootstrap';
 import { HttpClientModule } from '@angular/common/http';
 
+// Angular Material
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { MaterialModule } from './material';
+
 // Componentes
 import { AppComponent } from './app.component';
 import { AltaclienteComponent } from './components/altacliente/altacliente.component';
@@ -29,7 +33,9 @@ import { ClienteServices } from './services/cliente.services';
     FormsModule,
     ReactiveFormsModule,
     ModalModule.forRoot(),
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule,
+    MaterialModule
   ],
   providers: [GlobalServices, ClienteServices],
   bootstrap: [AppComponent]

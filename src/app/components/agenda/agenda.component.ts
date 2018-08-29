@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ClienteServices } from '../../services/cliente.services';
+import { MatTableDataSource, MatPaginator } from '@angular/material';
+
 
 
 @Component({
@@ -14,6 +16,10 @@ export class AgendaComponent implements OnInit {
   agenda: any[] = [];
   
   loading: boolean;
+
+  dataSource;
+
+  displayedColumns: string[] = ['nombre', 'apellido', 'documento', 'telefono', 'direccion', 'email'];
 
   constructor(private _clienteServices: ClienteServices) {
 

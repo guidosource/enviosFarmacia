@@ -1,8 +1,10 @@
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+
 body{
     background: #f2f2f2;
 }
 
-@import "~@angular/material/prebuilt-themes/indigo-pink.css";
 
 /* Animaciones */
 

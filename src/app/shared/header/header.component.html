@@ -65,8 +65,8 @@
           Clientes
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown2">
-          <a (click)='showAltaCliente()' class="dropdown-item" href="#">Nuevo Cliente</a>
-          <a  (click)='showAgenda()' class="dropdown-item" href="#">Ver Agenda</a>
+          <a (click)='showAltaCliente()' class="dropdown-item">Nuevo Cliente</a>
+          <a  [routerLink]="['agenda']" class="dropdown-item">Ver Agenda</a>
         </div>
       </li>
 
@@ -90,10 +90,10 @@
 
 <div *ngIf="altaClienteShow" class="modal fade" bsModal #altaCliente="bs-modal" [config]="{backdrop: 'static', show: 'true'}"
   tabindex="-1" role="dialog" aria-labelledby="dialog-static-name" (onHidden)="onHiddenAltaCliente()">
-  <div class="modal-dialog">
+  <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
-        <h4 id="dialog-static-name" class="modal-title pull-left">Alta Cliente</h4>
+        <h4 id="dialog-static-name" class="title modal-title pull-left">Alta Cliente</h4>
         <button type="button" class="close pull-right" aria-label="Close" (click)="hideAltaCliente({ok : 'true'})">
           <span aria-hidden="true">&times;</span>
         </button>

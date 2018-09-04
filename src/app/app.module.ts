@@ -20,6 +20,9 @@ import { AgendaComponent } from './components/agenda/agenda.component';
 import { GlobalServices } from './services/global.services';
 import { ClienteServices } from './services/cliente.services';
 
+// Rutas
+import { AppRoutingModule } from './app.routes';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,7 +38,8 @@ import { ClienteServices } from './services/cliente.services';
     ModalModule.forRoot(),
     HttpClientModule,
     BrowserAnimationsModule,
-    MaterialModule
+    MaterialModule,
+    AppRoutingModule
   ],
   providers: [GlobalServices, ClienteServices],
   bootstrap: [AppComponent]

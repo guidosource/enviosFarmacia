@@ -2,3 +2,8 @@
     color: red;
     padding: 10px;
 }
+
+.title{
+    font-family: 'Oxygen', sans-serif;
+    font-size: 30px;
+}

@@ -1,5 +1,8 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+
+import { Cliente } from './../../classes/Cliente';
+
 
 @Component({
   selector: 'app-altacliente',
@@ -11,6 +14,8 @@ export class AltaclienteComponent implements OnInit {
   form: FormGroup;
 
   @Output() respuesta: EventEmitter<any>;
+  @Input() cliente: Cliente;
+  @Input() operacion: string;
 
   constructor() { 
 
@@ -23,22 +28,34 @@ export class AltaclienteComponent implements OnInit {
       'email' : new FormControl('', [Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$')])
     });
 
+    
     this.respuesta = new EventEmitter();
-
+    
+    
   }
-
+  
   ngOnInit() {
+    
+    if (this.cliente) {
+     
+      this.form.get('nombre').setValue(this.cliente.nombre);
+      this.form.get('apellido').setValue(this.cliente.apellido);
+      this.form.get('documento').setValue(this.cliente.documento);
+      this.form.get('telefono').setValue(this.cliente.telefono);
+      this.form.get('direccion').setValue(this.cliente.direccion);
+      this.form.get('email').setValue(this.cliente.email);
+
+    }
+  
   }
 
   altaCliente() {
-    console.log(this.form.value);
-
-    let rta = {
-      ok : false,
-      err : 'Ya existe el documento'
-    };
-
-    this.respuesta.emit(rta);
+    
+    let body = this.form.value;
+    
+    let nuevoCliente: Cliente = new Cliente(body.nombre, body.apellido, body.documento, body.telefono, body.direccion, body.email);
+    
+    this.respuesta.emit(nuevoCliente);
     //this.respuesta.emit(true);
   }
 

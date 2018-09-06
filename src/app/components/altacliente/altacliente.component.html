@@ -1,60 +1,61 @@
-<div class="col-auto justify-content-center">
-  <div>
-    <form class="row" [formGroup]="form" (ngSubmit)="altaCliente()" novalidate="novalidate">
-      <div class="col-sm-12 col-md-6 form-group">
-        <label>Nombre <small>(*)</small></label>
-        <input [ngClass]="{ 'error' : form.get('nombre').invalid && form.get('nombre').touched }" class="form-control" type="text"
-          formControlName="nombre" placeholder="Ingrese Nombre">
-        <div *ngIf="form.get('nombre').invalid && form.get('nombre').touched" class="errdesc">
-          <small>Ingreso inváldo. Solo letras. 1 a 50 caracteres.</small>
-        </div>
+<form [formGroup]="form" (ngSubmit)="altaCliente()" novalidate="novalidate">
+
+  <div class="row container">
+
+    <div class="col-sm-12 form-group">
+      <label>Nombre <small>(*)</small></label>
+      <input [ngClass]="{ 'error' : form.get('nombre').invalid && form.get('nombre').touched }" class="form-control" type="text"
+        formControlName="nombre" placeholder="Ingrese Nombre">
+      <div *ngIf="form.get('nombre').invalid && form.get('nombre').touched" class="errdesc">
+        <small>Ingreso inváldo. Solo letras. 1 a 50 caracteres.</small>
       </div>
-      <div class="col-sm-12 col-md-6 form-group">
-        <label>Apellido <small>(*)</small></label>
-        <input [ngClass]="{ 'error' : form.get('apellido').invalid && form.get('apellido').touched }" class="form-control" type="text"
-          formControlName="apellido" placeholder="Ingrese Apellido">
-        <div *ngIf="form.get('apellido').invalid && form.get('apellido').touched" class="errdesc">
-          <small>Ingreso inváldo. Solo letras. 1 a 50 caracteres.</small>
-        </div>
+    </div>
+    <div class="col-sm-12  form-group">
+      <label>Apellido <small>(*)</small></label>
+      <input [ngClass]="{ 'error' : form.get('apellido').invalid && form.get('apellido').touched }" class="form-control" type="text"
+        formControlName="apellido" placeholder="Ingrese Apellido">
+      <div *ngIf="form.get('apellido').invalid && form.get('apellido').touched" class="errdesc">
+        <small>Ingreso inváldo. Solo letras. 1 a 50 caracteres.</small>
       </div>
-      <div class="col-sm-12 col-md-6 form-group">
-        <label>Documento</label>
-        <input [ngClass]="{ 'error' : form.get('documento').invalid && form.get('documento').touched }" class="form-control" type="text"
-          formControlName="documento" placeholder="Ingrese Documento">
-        <div *ngIf="form.get('documento').invalid && form.get('documento').touched" class="errdesc">
-          <small>Ingreso inváldo. Solo números. 1 a 30 caracteres.</small>
-        </div>
+    </div>
+    <div class="col-sm-12 col-md-6 form-group">
+      <label>Teléfono <small>(*)</small></label>
+      <input [ngClass]="{ 'error' : form.get('telefono').invalid && form.get('telefono').touched }" class="form-control" type="text"
+        formControlName="telefono" placeholder="Ingrese Teléfono">
+      <div *ngIf="form.get('telefono').invalid && form.get('telefono').touched" class="errdesc">
+        <small>Ingreso inváldo. 1 a 30 caracteres.</small>
       </div>
-      <div class="col-sm-12 col-md-6 form-group">
-        <label>Teléfono <small>(*)</small></label>
-        <input [ngClass]="{ 'error' : form.get('telefono').invalid && form.get('telefono').touched }" class="form-control" type="text"
-          formControlName="telefono" placeholder="Ingrese Teléfono">
-        <div *ngIf="form.get('telefono').invalid && form.get('telefono').touched" class="errdesc">
-          <small>Ingreso inváldo. 1 a 30 caracteres.</small>
-        </div>
+    </div>
+    <div class="col-sm-12 col-md-6 form-group">
+      <label>Documento</label>
+      <input [ngClass]="{ 'error' : form.get('documento').invalid && form.get('documento').touched }" class="form-control" type="text"
+        formControlName="documento" placeholder="Ingrese Documento">
+      <div *ngIf="form.get('documento').invalid && form.get('documento').touched" class="errdesc">
+        <small>Ingreso inváldo. Solo números. 1 a 30 caracteres.</small>
       </div>
-      <div class="col-sm-12 col-md-6 form-group">
-        <label>Dirección <small>(*)</small></label>
-        <input [ngClass]="{ 'error' : form.get('direccion').invalid && form.get('direccion').touched }" class="form-control" type="text"
-          formControlName="direccion" placeholder="Ingrese Dirección">
-        <div *ngIf="form.get('direccion').invalid && form.get('direccion').touched" class="errdesc">
-          <small>Ingreso inváldo. 1 a 50 caracteres.</small>
-        </div>
+    </div>
+    <div class="col-sm-12  form-group">
+      <label>Dirección <small>(*)</small></label>
+      <input [ngClass]="{ 'error' : form.get('direccion').invalid && form.get('direccion').touched }" class="form-control" type="text"
+        formControlName="direccion" placeholder="Ingrese Dirección">
+      <div *ngIf="form.get('direccion').invalid && form.get('direccion').touched" class="errdesc">
+        <small>Ingreso inváldo. 1 a 50 caracteres.</small>
       </div>
-      <div class="col-sm-12 col-md-6 form-group">
-        <label>Email</label>
-        <input [ngClass]="{ 'error' : form.get('email').invalid && form.get('email').touched }" class="form-control" type="email"
-          formControlName="email" placeholder="Ingrese Email">
-        <div *ngIf="form.get('email').invalid && form.get('email').touched" class="errdesc">
-          <small>Ingreso inváldo. Ej. nombre@dominio.com</small>
-        </div>
+    </div>
+    <div class="col-sm-12  form-group">
+      <label>Email</label>
+      <input [ngClass]="{ 'error' : form.get('email').invalid && form.get('email').touched }" class="form-control" type="email"
+        formControlName="email" placeholder="Ingrese Email">
+      <div *ngIf="form.get('email').invalid && form.get('email').touched" class="errdesc">
+        <small>Ingreso inváldo. Ej. nombre@dominio.com</small>
       </div>
-      <div>
-        <small>(*) Campos obligatorios.</small>
-      </div>
-    </form>
-    <div class="m-2">
-      <button [disabled]=" form.valid  == false " class="btn btn-success" type="submit">Nuevo</button>
+    </div>
+    <div class="col-sm-12 col-md-6 form-group">
+      <small>(*) Campos obligatorios.</small>
+    </div>
+    <div class="m-2 col-sm-12 col-md-6 form-group">
+      <button [disabled]=" form.valid  == false " class="btn btn-success" type="submit">{{operacion}}</button>
     </div>
   </div>
-</div>
+
+</form>

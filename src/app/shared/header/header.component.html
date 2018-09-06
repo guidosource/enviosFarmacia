@@ -1,45 +1,6 @@
-<!--   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    
-      <a class="navbar-brand" href="#">EnviosFarmacia</a>
-
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
-              aria-expanded="false">
-              Envios
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a  href="#" class="dropdown-item">
-                Nuevo Envio
-              </a>
-              <a  class="dropdown-item" href="#">
-                Ver Operaciones
-              </a>
-            </div>
-          </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
-              aria-expanded="false">
-              Clientes
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a (click)='showAltaCliente()' href="#" class="dropdown-item">
-                Alta Cliente
-              </a>
-              <a (click)='showAgenda()' class="dropdown-item" href="#">
-                Ver Agenda
-              </a>
-            </div>
-          </li>
-        </ul>
-      </div>
-    
-  </nav>
- -->
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <a class="navbar-brand" href="#">
+  <a class="navbar-brand" [routerLink]="['pendientes']">
     <img src="../../../assets/img/icono.png" alt="Farmacia" width="30px"> Envíos Farmacia
   </a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -65,67 +26,43 @@
           Clientes
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown2">
-          <a (click)='showAltaCliente()' class="dropdown-item">Nuevo Cliente</a>
-          <a  [routerLink]="['agenda']" class="dropdown-item">Ver Agenda</a>
+          <a (click)='abrirModal(template)' class="puntero dropdown-item">Nuevo Cliente</a>
+          <a [routerLink]="['agenda']" class="dropdown-item">Ver Agenda</a>
         </div>
       </li>
 
     </ul>
     <form class="form-inline my-2 my-lg-0">
-        <div class="btn-group dropleft">
-            <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              {{userName}}
-            </button>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-              <a class="dropdown-item" href="#">Perfil</a>
-              <a class="dropdown-item" href="#">Cerrar Sesión</a>
-            </div>
-          </div> 
+      <div class="btn-group dropleft">
+        <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+          aria-expanded="false">
+          {{userName}}
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <a class="dropdown-item" href="#">Perfil</a>
+          <a class="dropdown-item" href="#">Cerrar Sesión</a>
+        </div>
+      </div>
     </form>
-    </div>
+  </div>
 </nav>
 
 
-<!-- Modal AltaCliente -->
+<!-- Modal Alta Cliente  -->
 
-<div *ngIf="altaClienteShow" class="modal fade" bsModal #altaCliente="bs-modal" [config]="{backdrop: 'static', show: 'true'}"
-  tabindex="-1" role="dialog" aria-labelledby="dialog-static-name" (onHidden)="onHiddenAltaCliente()">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h4 id="dialog-static-name" class="title modal-title pull-left">Alta Cliente</h4>
-        <button type="button" class="close pull-right" aria-label="Close" (click)="hideAltaCliente({ok : 'true'})">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <app-altacliente (respuesta)="hideAltaCliente($event)"></app-altacliente>
-      </div>
-      <div class="error" *ngIf="errorAltaCliente">
-        <small>Mensaje: {{msjError}}.</small>
-      </div>
-    </div>
+<ng-template #template>
+  
+  <div class="modal-header">
+    <h4 class="title modal-title pull-left">Alta Cliente</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="altaClienteModal.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
   </div>
-</div>
-
-<!-- Modal Agenda -->
-
-<div *ngIf="agendaShow" class="modal fade" bsModal #agenda="bs-modal" [config]="{backdrop: 'static', show: 'true'}" tabindex="-1"
-  role="dialog" aria-labelledby="dialog-static-name" (onHidden)="onHiddenAgenda()">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <!-- <div class="modal-header">
-          <i class="fas fa-address-book"></i>
-        <h4 id="dialog-static-name" class="modal-title pull-left">Agenda</h4>
-      </div> -->
-      <div class="modal-body">
-        <app-agenda></app-agenda>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-outline-danger" aria-label="Close" (click)="hideAgenda()">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-    </div>
+  <div class="modal-body">
+    <app-altacliente (respuesta)="altaCliente($event)" [operacion]="'Nuevo'"></app-altacliente>
   </div>
-</div>
+  <p-messages [(value)]="msgs"></p-messages>
+
+  
+</ng-template>
+

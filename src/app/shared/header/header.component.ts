@@ -1,6 +1,6 @@
-import { Component, ViewChild } from '@angular/core';
-import { ModalDirective } from 'ngx-bootstrap/modal';
-
+import { Component, TemplateRef } from '@angular/core';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import { Message } from 'primeng/components/common/api';
 
 
 @Component({
@@ -9,58 +9,46 @@ import { ModalDirective } from 'ngx-bootstrap/modal';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent {
-  
+
   userName: String = '';
 
-  @ViewChild('altaCliente') altaCliente: ModalDirective;
-  altaClienteShow = false; // Bandera ;crea en el dom el modal
-  errorAltaCliente = false; // Bandera ;muestra si ocurrio un error
-  msjError: String; // Es el mensaje indicando el error.
 
-  @ViewChild('agenda') agenda: ModalDirective;
-  agendaShow = false; // Bandera ;crea en el dom el modal
-
-  constructor() {
-
-      // prueba
-      this.userName = 'San Agustin';
-
-   }
-
-  showAltaCliente() {
-    this.altaClienteShow = true;
-  }
-
-  hideAltaCliente(res: any) {
-    
-    if (res.ok === 'true') {
-      this.altaCliente.hide();
-    } else {
-      this.msjError = res.err;
-      this.errorAltaCliente = true;
-    }
-
-  }
-
-  onHiddenAltaCliente() {
-    this.altaClienteShow = false;
-    this.errorAltaCliente = false;
-  }
-
-  showAgenda() {
-    this.agendaShow = true;
-  }
-
-  hideAgenda() {
-    
-    this.agenda.hide();
-    
-  }
-
-  onHiddenAgenda() {
-    this.agendaShow = false;
-  }
+  // MODAL 
+  altaClienteModal: BsModalRef;
 
 
+  // Mensajes Confirmación - Error
+  msgs: Message[] = [];
   
+
+  constructor(private _modalService: BsModalService, ) {
+
+    // prueba
+    this.userName = 'San Agustin';
+  }
+
+  private mostrarMensaje( severity: string, summary: string, detail: string  ) {
+    this.msgs = [];
+    this.msgs.push({ severity: severity , summary: summary, detail: detail });
+  }
+
+  abrirModal(template: TemplateRef<any>) {
+
+
+    this.altaClienteModal = this._modalService.show(template, { ignoreBackdropClick: true });
+
+  }
+
+  altaCliente(cliente: any) {
+
+      if (cliente.nombre === 'ok') {
+        this.mostrarMensaje('success', 'Ok', 'Cliente dado de alta');
+        
+          // FALTA CERRAR MODAL
+
+      } else {
+        this.mostrarMensaje('error', 'Fallo', 'Documento repetido');
+      }
+  }
+
 }

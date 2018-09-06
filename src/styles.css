@@ -34,3 +34,7 @@ body{
 .fadeIn {
     animation-name: fadeIn;
 }
+
+.puntero {
+    cursor: pointer;
+}

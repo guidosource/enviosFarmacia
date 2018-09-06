@@ -8,6 +8,8 @@ import { HttpClientModule } from '@angular/common/http';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { MaterialModule } from './material';
 
+import { MessageService } from 'primeng/api';
+
 // Componentes
 import { AppComponent } from './app.component';
 import { AltaclienteComponent } from './components/altacliente/altacliente.component';
@@ -41,7 +43,7 @@ import { AppRoutingModule } from './app.routes';
     MaterialModule,
     AppRoutingModule
   ],
-  providers: [GlobalServices, ClienteServices],
+  providers: [GlobalServices, ClienteServices, MessageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

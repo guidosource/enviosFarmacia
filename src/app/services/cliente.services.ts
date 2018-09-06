@@ -10,6 +10,12 @@ export class ClienteServices {
     
     constructor(private _http: HttpClient, private _global: GlobalServices ) { }
 
+    nuevoCliente() {
+
+        
+    }
+
+
     todosLosClientes() {
         const options = {
             headers : new HttpHeaders({

@@ -24,6 +24,7 @@ import { ClienteServices } from './services/cliente.services';
 
 // Rutas
 import { AppRoutingModule } from './app.routes';
+import { NuevoenvioComponent } from './components/nuevoenvio/nuevoenvio.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { AppRoutingModule } from './app.routes';
     AltaclienteComponent,
     PendientesComponent,
     HeaderComponent,
-    AgendaComponent
+    AgendaComponent,
+    NuevoenvioComponent
   ],
   imports: [
     BrowserModule,

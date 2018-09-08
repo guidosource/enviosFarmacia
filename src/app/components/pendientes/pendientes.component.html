@@ -8,7 +8,7 @@
 
     <div class="ml-auto mr-1 mt-1">
 
-      <button class="btn btn-sm btn-success">Nuevo Envío <i class="fas fa-cart-plus"></i></button>
+      <button class="btn btn-sm btn-success" [routerLink]="['/nuevoenvio']" >Nuevo Envío <i class="fas fa-cart-plus"></i></button>
 
     </div>
 
@@ -19,6 +19,7 @@
       <table class="table table-condensed">
         <thead>
           <tr>
+            <th>Fecha</th>
             <th>Cliente</th>
             <th>Dirección</th>
             <th>Teléfono</th>
@@ -27,29 +28,14 @@
             <th></th>
           </tr>
         </thead>
-  
-        <tbody>
+
+        <tbody *ngFor="let pedido of enviosPendientes">
           <tr>
-            <td>Juan Perez</td>
-            <td>Juncal 3160</td>
-            <td>5555-5555</td>
-            <td>Pablo</td>
-            <td>
-              <select class="custom-select" name="" id="">
-                <option value="">PENDIENTE</option>
-                <option value="">EN REPARTO</option>
-                <option value="">ENTREGADO</option>
-                <option value="">EN REPARTO PENDIENTE</option>
-                <option value="">CANCELADO</option>
-              </select>
-            </td>
-            <td><button>+</button></td>
-          </tr>
-          <tr>
-            <td>Maria Gomez</td>
-            <td>Laprida 160</td>
-            <td>555125-25355</td>
-            <td>Pablo</td>
+            <td>{{pedido.fecha | date:'short' }} </td>
+            <td>{{pedido.cliente.nombre | titlecase}}, {{pedido.cliente.apellido | titlecase}}</td>
+            <td>{{pedido.cliente.direccion}}</td>
+            <td>{{pedido.cliente.telefono}}</td>
+            <td>{{pedido.repartidor}}</td>
             <td>
               <select class="custom-select" name="" id="">
                 <option value="">PENDIENTE</option>
@@ -60,8 +46,7 @@
               </select>
             </td>
             <td>
-              <button class="btn btn-dark"><i class="fas fa-save"></i></button>
-              <button alt="asd" class="btn btn-info"><i class="fas fa-asterisk"></i></button>
+              <button class="btn btn-dark"><i class="fas fa-save"></i></button>&nbsp;<button alt="asd" class="btn btn-info"><i class="fas fa-asterisk"></i></button>
             </td>
           </tr>
         </tbody>
@@ -70,4 +55,3 @@
   </div>
 
 </div>
-  

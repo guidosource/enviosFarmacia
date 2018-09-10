@@ -25,6 +25,7 @@ import { ClienteServices } from './services/cliente.services';
 // Rutas
 import { AppRoutingModule } from './app.routes';
 import { NuevoenvioComponent } from './components/nuevoenvio/nuevoenvio.component';
+import { AgregaritemComponent } from './components/agregaritem/agregaritem.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { NuevoenvioComponent } from './components/nuevoenvio/nuevoenvio.componen
     PendientesComponent,
     HeaderComponent,
     AgendaComponent,
-    NuevoenvioComponent
+    NuevoenvioComponent,
+    AgregaritemComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,56 @@
+
+<form >
+  <div class="row container">
+
+    <div class="col-12 form-group">
+      <label for="">Tipo</label>
+      <select (onchange)="test()" name="tipo"  [(ngModel)]="tipo" class="custom-select">
+        <option [ngValue]="'particular'">Particular</option>
+        <option [ngValue]="'osocial'">Obra Social</option>
+      </select>
+    </div>
+    
+    <div class="animated fadeIn fast" *ngIf="tipo == 'particular'" >
+      <div class="col-12 form-group">
+        <label for="">Item</label>
+        <input [(ngModel)]="item" class="form-control" type="text" name="item" placeholder="Item">
+      </div>
+  
+      <div class="col-12 form-group">
+        <label for="">Importe</label>
+        <input [(ngModel)]="importe" class="form-control" type="text" name="importe" placeholder="Importe">
+      </div>
+    </div>
+
+    <div class="col-12 form-group">
+      <button (click)="agregarItem()" >Agregar</button>
+    </div>
+
+    <div class="animated fadeIn fast" *ngIf="tipo == 'osocial'" >
+        <div class="col-12 form-group">
+          <label for="">Obra Social</label>
+          <input class="form-control" type="text" placeholder=" Obra Social">
+        </div>
+
+        <div class="col-12 form-group">
+          <label for="">Fecha Receta</label>
+          <input class="form-control" type="date">
+        </div>
+
+        <div class="col-12 form-group">
+          <label for="">Matricula del medico</label>
+          <input class="form-control" type="text" placeholder="Matricula">
+        </div>
+
+        <div class="col-12 form-group">
+          <label for="">Dato adicional</label>
+          <input class="form-control" type="text" placeholder="Dato adicional">
+        </div>
+
+
+    </div>
+
+
+
+  </div>
+</form>

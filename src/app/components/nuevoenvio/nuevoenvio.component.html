@@ -1,27 +1,82 @@
 <div class="container my-5 body-nuevo-envio animated fadeIn">
-  
+
   <div class="row">
     <div class="col-4 title my-2">
 
       <span>Nuevo Envio</span>
 
     </div>
-  
+
     <div class="col-5 ml-auto my-2 ">
-      
-      <form class="form-inline">
-          <input class="form-control mr-2" type="text" placeholder="Buscar">
-          <button class="btn btn-success btn-sm">Nuevo Cliente</button>
-      </form>
+
+      <div class="row">
+
+        <form class="form-inline">
+          <input (click)="limpiarMensaje()" class="form-control mr-2" type="text" #buscar placeholder="Buscar">
+          <button (click)="buscarCliente(buscar.value)" class="btn btn-primary btn-sm">Buscar</button>
+        </form>
+
+      </div>
+
+      <div *ngIf="loading" class="my-2 row justify-content-center">
+
+        <i class="fas fa-spinner fa-2x fa-spin"></i>
+
+      </div>
+
+      <div class="row">
+
+        <div class="col-12">
+          <p-messages [closable]="false" [(value)]="msgs"></p-messages>
+        </div>
+
+
+        <div *ngIf="clienteEncontrado" class="row">
+
+          <div class="col-8 my-2">
+
+            <mat-expansion-panel>
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  Cliente: 
+                </mat-panel-title>
+                <mat-panel-description>
+                  {{clienteEncontrado.nombre | titlecase}}, {{clienteEncontrado.apellido | titlecase}}
+                </mat-panel-description>
+              </mat-expansion-panel-header>
+              <p>Nombre: {{clienteEncontrado.nombre | titlecase}}</p>
+              <p>Apellido: {{clienteEncontrado.apellido | titlecase}}</p>
+              <p>Documento: {{clienteEncontrado.documanto}}</p>
+              <p>Teléfono: {{clienteEncontrado.telefono}}</p>
+              <p>Dirección: {{clienteEncontrado.direccion}}</p>
+              <p>Email: {{clienteEncontrado.email}}</p>
+            </mat-expansion-panel>
+
+
+          </div>
+          <div class="col-4 my-2">
+
+            <button (click)="seleccionarCliente()" class="btn btn-success btn-sm">
+              Confirmar
+              <i class="fas fa-check "></i>
+            </button>
+          </div>
+        </div>
+
+      </div>
+
 
     </div>
+
   </div>
+
+  <hr>
 
   <div class="row my-5 ">
     <div class="col">
 
       <div class="row">
-        <div class="col-8 offset-1">
+        <div class="col-8">
           <table class="table table-res items">
             <thead>
               <th>Item</th>
@@ -29,20 +84,40 @@
               <th>Detalle</th>
               <th></th>
             </thead>
-            <tbody>
+            <tbody *ngFor="let item of tablaItems ; let i = index">
               <tr>
-                <td>Rivotril 0.5 x 30</td>
-                <td>200.38</td>
-                <td><button class="btn btn-link">Ver</button></td>
+                <td *ngIf="item.constructor.name === 'Particular'">{{item.nombre}}</td>
+                <td *ngIf="item.constructor.name === 'ObraSocial'">{{item.obraSocial}}</td>
+                <td>{{item.importe}}</td>
+                <td *ngIf="item.constructor.name === 'ObraSocial'"><button class="btn btn-link">Ver</button></td>
+                <td *ngIf="item.constructor.name === 'Particular'"><button class="btn btn-dark" disabled="disabled">Ver</button></td>
                 <td>
-                    <button class="btn btn-danger">Eliminar item</button>
+                  <button (click)="eliminarItem(i)" class="btn btn-danger"><i class="fas fa-trash"></i></button>
                 </td>
               </tr>
             </tbody>
           </table>
+          <button (click)="openModal(template)" class="btn btn-info btn-sm">Agregar</button>
         </div>
+
         <div class="col">
-            <button class="btn btn-info">Agregar</button>
+          <div class="card">
+            <div class="card-header">
+
+              <div class="card-title">
+                <strong>CLIENTE</strong>
+              </div>
+
+            </div>
+            <div *ngIf="clienteSeleccionado" class="card-body animated fadeIn fast">
+              <p>Nombre: {{clienteSeleccionado.nombre | titlecase}}</p>
+              <p>Apellido: {{clienteSeleccionado.apellido | titlecase}}</p>
+              <p>Documento: {{clienteSeleccionado.documento}}</p>
+              <p>Teléfono: {{clienteSeleccionado.telefono}}</p>
+              <p>Dirección: {{clienteSeleccionado.direccion}}</p>
+              <p>Email: {{clienteSeleccionado.email}}</p>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -50,13 +125,32 @@
     </div>
   </div>
 
+  <hr>
+
   <div class="row">
-    <div class="col-3 my-2">
-      <input class="form-control" type="text" placeholder="Cargo envio">
+    <div class="form-check col-3 my-2">
+      <input class="form-check-input" type="checkbox">
+      <label class="form-check-label">Cargo Envio</label>
     </div>
     <div class="col-12 my-2">
-      <span>Importe Total: </span>
+      <span>Importe Total:  </span>
     </div>
   </div>
 
 </div>
+
+
+
+<!-- Modal nuevo item-->
+
+<ng-template #template>
+    <div class="modal-header">
+      <h4 class="modal-title pull-left">Agregar Item</h4>
+      <button type="button" class="close pull-right" aria-label="Close" (click)="agregarItemsModal.hide()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <app-agregaritem (respuesta)="agregarItem($event)"></app-agregaritem>
+    </div>
+  </ng-template>

@@ -19,7 +19,7 @@ import { MessageService } from 'primeng/api';
 })
 export class AgendaComponent implements OnInit, AfterViewInit, AfterContentInit {
 
-  clientes: any[] = [];
+  clientes: any = [];
 
   // Mensaje confirmación - error
   msgs: Message[] = [];

@@ -21,6 +21,7 @@ import { AgendaComponent } from './components/agenda/agenda.component';
 // Servicios
 import { GlobalServices } from './services/global.services';
 import { ClienteServices } from './services/cliente.services';
+import { UsuarioServices } from './services/usuario.services';
 
 // Rutas
 import { AppRoutingModule } from './app.routes';
@@ -47,7 +48,7 @@ import { AgregaritemComponent } from './components/agregaritem/agregaritem.compo
     MaterialModule,
     AppRoutingModule
   ],
-  providers: [GlobalServices, ClienteServices, MessageService],
+  providers: [GlobalServices, ClienteServices, MessageService, UsuarioServices],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

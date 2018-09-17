@@ -160,7 +160,7 @@ export class ClienteServices {
         { "nombre": "Teddie", "apellido": "Alejo", "email": "talejo3u@army.mil", "documento": "44-689-4985", "telefono": "915-918-5649", "direccion": "7 Lerdahl Point" }];
         
         
-        const options = {
+        /* const options = {
             headers : new HttpHeaders({
                 'Content-Type' : 'application/json'
                 // 'token' : localStorage.getItem('token')
@@ -169,7 +169,7 @@ export class ClienteServices {
         };
         
         return  this._http.get( this._global.URL_SERVER + '/cliente/obtenerclientes', options )
-        .pipe(map(res => res['clientes']) );
+        .pipe(map(res => res['clientes']) ); */
     }
 
     buscarClientes(termino: string) {

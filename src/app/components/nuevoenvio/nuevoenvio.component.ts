@@ -19,7 +19,7 @@ export class NuevoenvioComponent implements OnInit {
   msgs: Message[] = [];
 
   // TEST
-  clientes: any[] = [];
+  clientes: any = [];
 
 
   // loadings busqueda

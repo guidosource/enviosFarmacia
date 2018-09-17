@@ -38,7 +38,7 @@
             <mat-expansion-panel>
               <mat-expansion-panel-header>
                 <mat-panel-title>
-                  Cliente: 
+                  Cliente:
                 </mat-panel-title>
                 <mat-panel-description>
                   {{clienteEncontrado.nombre | titlecase}}, {{clienteEncontrado.apellido | titlecase}}
@@ -90,14 +90,14 @@
                 <td *ngIf="item.constructor.name === 'ObraSocial'">{{item.obraSocial}}</td>
                 <td>{{item.importe}}</td>
                 <td *ngIf="item.constructor.name === 'ObraSocial'"><button class="btn btn-link">Ver</button></td>
-                <td *ngIf="item.constructor.name === 'Particular'"><button class="btn btn-dark" disabled="disabled">Ver</button></td>
+                <td *ngIf="item.constructor.name === 'Particular'"><button class="btn btn-link" disabled="disabled">Ver</button></td>
                 <td>
-                  <button (click)="eliminarItem(i)" class="btn btn-danger"><i class="fas fa-trash"></i></button>
+                  <button (click)="eliminarItem(i)" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>
                 </td>
               </tr>
             </tbody>
           </table>
-          <button (click)="openModal(template)" class="btn btn-info btn-sm">Agregar</button>
+          <button (click)="openModal(template)" class="btn btn-primary btn-sm">Agregar</button>
         </div>
 
         <div class="col">
@@ -105,11 +105,11 @@
             <div class="card-header">
 
               <div class="card-title">
-                <strong>CLIENTE</strong>
+                <strong>CLIENTE SELECCIONADO</strong>
               </div>
 
             </div>
-            <div *ngIf="clienteSeleccionado" class="card-body animated fadeIn fast">
+            <div *ngIf="clienteSeleccionado" class=" body-nuevo-envio card-body animated fadeIn fast">
               <p>Nombre: {{clienteSeleccionado.nombre | titlecase}}</p>
               <p>Apellido: {{clienteSeleccionado.apellido | titlecase}}</p>
               <p>Documento: {{clienteSeleccionado.documento}}</p>
@@ -133,24 +133,42 @@
       <label class="form-check-label">Cargo Envio</label>
     </div>
     <div class="col-12 my-2">
-      <span>Importe Total:  </span>
+      <span>Importe Total: </span>
     </div>
   </div>
 
 </div>
 
-
+<button class="btn btn-primary" (click)="lgModal.show()">Large modal</button>
 
 <!-- Modal nuevo item-->
 
 <ng-template #template>
-    <div class="modal-header">
-      <h4 class="modal-title pull-left">Agregar Item</h4>
-      <button type="button" class="close pull-right" aria-label="Close" (click)="agregarItemsModal.hide()">
-        <span aria-hidden="true">&times;</span>
-      </button>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Agregar Item</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="agregarItemsModal.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <app-agregaritem (respuesta)="agregarItem($event)"></app-agregaritem>
+  </div>
+</ng-template>
+
+
+<!-- Large Modal -->
+<div bsModal #lgModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="dialog-sizes-name1">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 id="dialog-sizes-name1" class="modal-title pull-left">Agregar Item</h4>
+        <button type="button" class="close pull-right" (click)="lgModal.hide()" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <app-agregaritem (respuesta)="agregarItem($event)"></app-agregaritem>
+      </div>
     </div>
-    <div class="modal-body">
-      <app-agregaritem (respuesta)="agregarItem($event)"></app-agregaritem>
-    </div>
-  </ng-template>
+  </div>
+</div>

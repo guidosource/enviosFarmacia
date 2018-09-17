@@ -1,16 +1,119 @@
+<div class="container">
 
-<form >
+  <div class="row my-2">
+    <label>Tipo</label>
+    <select class="custom-select" #tipo>
+      <option value="particular">Particular</option>
+      <option value="osocial">Obra Social</option>
+    </select>
+  </div>
+
+  <div class="row container sombra my-5">
+
+    <div class="col-12 my-2">
+      <strong>Carga Items</strong>
+    </div>
+
+    <form class="row" [formGroup]="formParticular" novalidate="novalidate" (ngSubmit)="agregarItem(tipo.value)">
+
+      <div class="col-12 form-group">
+        <label>Item</label>
+        <input class="form-control" type="text" formControlName="item" placeholder="Nombre del item">
+        <input class="form-control" type="text" placeholder="Gramaje">
+        <input class="form-control" type="text" placeholder="Cantidad">
+        <input class="form-control" min="1" max="99" value="1" type="number" name="" id="">
+      </div>
+
+      <div class="col-12 form-group">
+        <label>Importe</label>
+        <input class="form-control" type="text" formControlName="importe" placeholder="Ingrese el importe">
+      </div>
+
+      <div class="ml-2 form-group">
+        <button [disabled]=" formParticular.valid  == false " class="btn btn-primary btn-sm" type="submit">Agregar</button>
+      </div>
+
+    </form>
+
+  </div>
+
+  <div class="row sombra my-5 " *ngIf="tipo.value == 'osocial'">
+
+    <div class="col-12 my-2 ">
+      <strong>Carga Receta</strong>
+    </div>
+
+    <form class="row container" [formGroup]="formObraSocial" novalidate="novalidate" (ngSubmit)="agregarReceta()">
+
+      <div class="col-12 form-group">
+        <label>Obra Social</label>
+        <select class="mt-2 custom-select" formControlName="osocial">
+          <option *ngFor="let ob of obrasSociales" [value]="ob">{{ob | titlecase}}</option>
+        </select>
+      </div>
+
+      <div class="col-12 form-group">
+        <label for="">Fecha Receta</label>
+        <input class="form-control" type="date" formControlName="fecha">
+      </div>
+
+      <div class="col-12 form-group">
+        <label for="">Matrícula del médico</label>
+        <input class="form-control" type="text" placeholder="Matricula" formControlName="matricula">
+      </div>
+
+      <div class="col-12 form-group">
+        <label for="">Dato adicional</label>
+        <input class="form-control" type="text" placeholder="Dato adicional" formControlName="adicional">
+      </div>
+
+      <div class="col-12">
+        <table class="table">
+          <thead>
+            <th>Nombre</th>
+            <th>Importe</th>
+            <th></th>
+          </thead>
+          <tbody *ngFor="let item of itemsReceta ; let i = index">
+            <tr>
+              <td>{{item.nombre}}</td>
+              <td>{{item.importe}}</td>
+              <td><button (click)="borrarItem(i)" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="ml-2 col-12 form-group form-check">
+        <input #checkOb type="checkbox" class="form-check-input">
+        <label class="form-check-label">Confirmar</label>
+      </div>
+
+      <div class="ml-2 form-group">
+        <button [disabled]="formObraSocial.valid == false && checkOb.checked == false " class="btn btn-primary btn-sm"
+          type="submit">Agregar Receta</button>
+      </div>
+
+    </form>
+
+  </div>
+
+  <p-toast [style]="{marginTop: '80px'}" position="top-center" key="tc"></p-toast>
+  <p-toast [style]="{marginTop: '80px'}" key="custom" position="bottom-center"></p-toast>
+
+
+</div>
+<!-- <form >
   <div class="row container">
-
     <div class="col-12 form-group">
       <label for="">Tipo</label>
-      <select (onchange)="test()" name="tipo"  [(ngModel)]="tipo" class="custom-select">
+      <select (onchange)="test()"  name="tipo"  [(ngModel)]="tipo" class="custom-select">
         <option [ngValue]="'particular'">Particular</option>
         <option [ngValue]="'osocial'">Obra Social</option>
       </select>
     </div>
     
-    <div class="animated fadeIn fast" *ngIf="tipo == 'particular'" >
+    <div class="animated fadeIn fast" >
       <div class="col-12 form-group">
         <label for="">Item</label>
         <input [(ngModel)]="item" class="form-control" type="text" name="item" placeholder="Item">
@@ -53,4 +156,4 @@
 
 
   </div>
-</form>
+</form> -->

@@ -7,11 +7,13 @@ export  class Particular extends Item {
 
     nombre: string;
     importe: number;
+    cantidad: number;
 
-    constructor(nombre: string, importe: number) {
+    constructor(nombre: string, importe: number, cantidad: number) {
         super();
         this.nombre = nombre;
         this.importe = importe;
+        this.cantidad = cantidad;
     }
 
 }

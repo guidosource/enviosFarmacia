@@ -1,10 +1,11 @@
 
 import { Item, Particular, ObraSocial } from './../../classes/Item';
-import { Component, OnInit, TemplateRef } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Message } from 'primeng/components/common/api';
+import { ModalDirective } from 'ngx-bootstrap/modal';
 
 import { ClienteServices } from '../../services/cliente.services';
-import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+// import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 
 
 @Component({
@@ -14,7 +15,7 @@ import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 })
 export class NuevoenvioComponent implements OnInit {
 
-  tablaItems: Item[] = new Array();
+  tablaItems: Item[] = [];
 
   msgs: Message[] = [];
 
@@ -31,9 +32,11 @@ export class NuevoenvioComponent implements OnInit {
   clienteSeleccionado: any;
 
   // MODAL
-  agregarItemsModal: BsModalRef;
+  // agregarItemsModal: BsModalRef;
+  @ViewChild('lgModal') itemsModal: ModalDirective;
+  crearItemsModal: boolean;
 
-  constructor(private _clienteServices: ClienteServices, private _modalService: BsModalService) {
+  constructor(private _clienteServices: ClienteServices) {
 
     let fecha = new Date();
     let item1 = new Particular('rivotril 0.5 x 60', 208.50);
@@ -48,9 +51,12 @@ export class NuevoenvioComponent implements OnInit {
 
   agregarItem( item: Item ) {
 
+    console.log(item);
+
+    this.itemsModal.hide();
+
     this.tablaItems.push(item);
 
-    this.agregarItemsModal.hide();
 
   }
 
@@ -104,9 +110,19 @@ export class NuevoenvioComponent implements OnInit {
 
   }
 
-  openModal(template: TemplateRef<any>) {
+
+  /* openModal(template: TemplateRef<any>) {
 
     this.agregarItemsModal = this._modalService.show(template, { ignoreBackdropClick: true });
+  } */
+
+
+  abrirItemsModal() {
+    this.crearItemsModal = true;
+  }
+
+  cerrarItemsModal() {
+    this.crearItemsModal = false;
   }
 
 

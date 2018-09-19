@@ -25,6 +25,7 @@ export  class ObraSocial extends Item {
     matricula: string;
     adicional: string;
     items: Particular[];
+    importe: number;
 
 
     constructor( obraSocial: string, fecha: Date, matricula: string , items: Particular[] , adicional: string = '' ){
@@ -34,6 +35,23 @@ export  class ObraSocial extends Item {
         this.matricula = matricula;
         this.items = items;
         this.adicional = adicional;
+        this.importe = this.importeTotal();
+
+    }
+
+    private importeTotal(): number { 
+
+        let sumaImportes = 0;
+        let importeFinal: string;
+
+        for (const i of this.items) {
+            sumaImportes = sumaImportes + i.importe;
+        }
+
+        importeFinal = sumaImportes.toString().match(/^-?\d+(?:\.\d{0,2})?/)[0];
+
+        return parseFloat(importeFinal);
+
     }
 }
 

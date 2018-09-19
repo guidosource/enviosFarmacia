@@ -75,8 +75,11 @@ export class AgregaritemComponent implements OnInit {
 
     } else {
       this.itemsReceta.push(item);
-      this.formParticular.get('item').setValue('');
+      this.formParticular.get('nombre').setValue('');
       this.formParticular.get('importe').setValue('');
+      this.formParticular.get('gramaje').setValue('');
+      this.formParticular.get('cantidad').setValue('');
+      this.formParticular.get('multiplicador').setValue('1');
       this.showSuccess();
     }
 
@@ -108,7 +111,8 @@ export class AgregaritemComponent implements OnInit {
 
     let ultItem = this.itemsReceta[this.itemsReceta.length - 1];
 
-    this._messageService.add({ key: 'tc', severity: 'success', summary: 'Item agregado', detail: `Se agrego: ${ultItem.nombre}` });
+    this._messageService.add({ key: 'tc', severity: 'success', summary: 'Item agregado',
+     detail: `Se agrego: ${ultItem.nombre} Cantidad: ${ultItem.cantidad}` });
   }
 
   test() {

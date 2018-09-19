@@ -8,7 +8,77 @@
     </select>
   </div>
 
-  <div class="row container sombra my-5">
+  <div class="row sombra my-5 animated fadeIn fast" *ngIf="tipo.value == 'osocial'">
+
+      <div class="col-12 my-2 ">
+        <strong>Carga Receta</strong>
+      </div>
+  
+      <form class="row container" [formGroup]="formObraSocial" novalidate="novalidate" (ngSubmit)="agregarReceta()">
+  
+        <div class="col-6 form-group">
+          <label>Obra Social <small>(*)</small></label>
+          <select class="mt-2 custom-select" formControlName="osocial">
+            <option *ngFor="let ob of obrasSociales" [value]="ob">{{ob | titlecase}}</option>
+          </select>
+        </div>
+  
+        <div class="col-6 form-group">
+          <label for="">Fecha Receta <small>(*)</small></label>
+          <input class="form-control" type="date" formControlName="fecha">
+        </div>
+  
+        <div class="col-6 form-group">
+          <label for="">Matrícula del médico <small>(*)</small></label>
+          <input class="form-control" type="text" placeholder="Matricula" formControlName="matricula">
+        </div>
+  
+        <div class="col-6 form-group">
+          <label for="">Dato adicional</label>
+          <input class="form-control" type="text" placeholder="Dato adicional" formControlName="adicional">
+        </div>
+  
+        <div class="col-12 mt-2 mb-4">
+          <table class="table">
+            <thead>
+              <th>Nombre</th>
+              <th>Cantidad</th>
+              <th>Importe</th>
+              <th></th>
+            </thead>
+            <small *ngIf="itemsReceta.length === 0"  style="color: red">Debe ingresar al menos un item</small>
+            <tbody *ngFor="let item of itemsReceta ; let i = index">
+              <tr>
+                <td>{{item.nombre}}</td>
+                <td>{{item.cantidad}}</td>
+                <td>{{item.importe}}</td>
+                <td><button (click)="borrarItem(i)" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+  
+        <div class="ml-2 col-12 form-group form-check">
+          <input [disabled]="itemsReceta.length === 0" #checkOb type="checkbox" class="form-check-input">
+          <label class="form-check-label">Confirmar</label>
+        </div>
+  
+        <div class="col-12 form-group">
+          <small>(*) Campos obligatorios.</small>
+        </div>
+  
+        <div class="ml-2 form-group">
+          <button [disabled]="(formObraSocial.valid === false) || (checkOb.checked === false) " class="btn btn-primary btn-sm"
+            type="submit">Agregar Receta</button>
+        </div>
+        
+      </form>
+  
+    </div>
+    
+
+
+  <div class="row container sombra my-5 animated fadeIn fast">
 
     <div class="col-12 my-2">
       <strong>Carga Producto</strong>
@@ -42,7 +112,7 @@
       </div>
 
       <div class="col-12 form-group">
-        <label >Importe Total</label>
+        <label>Importe Total</label>
         <p>
           <span>$ {{formParticular.value.importe * formParticular.value.multiplicador | number:'1.0-2'}}</span>
         </p>
@@ -60,69 +130,8 @@
 
   </div>
 
-  <div class="row sombra my-5 " *ngIf="tipo.value == 'osocial'">
-
-    <div class="col-12 my-2 ">
-      <strong>Carga Receta</strong>
-    </div>
-
-    <form class="row container" [formGroup]="formObraSocial" novalidate="novalidate" (ngSubmit)="agregarReceta()">
-
-      <div class="col-12 form-group">
-        <label>Obra Social</label>
-        <select class="mt-2 custom-select" formControlName="osocial">
-          <option *ngFor="let ob of obrasSociales" [value]="ob">{{ob | titlecase}}</option>
-        </select>
-      </div>
-
-      <div class="col-12 form-group">
-        <label for="">Fecha Receta</label>
-        <input class="form-control" type="date" formControlName="fecha">
-      </div>
-
-      <div class="col-12 form-group">
-        <label for="">Matrícula del médico</label>
-        <input class="form-control" type="text" placeholder="Matricula" formControlName="matricula">
-      </div>
-
-      <div class="col-12 form-group">
-        <label for="">Dato adicional</label>
-        <input class="form-control" type="text" placeholder="Dato adicional" formControlName="adicional">
-      </div>
-
-      <div class="col-12">
-        <table class="table">
-          <thead>
-            <th>Nombre</th>
-            <th>Importe</th>
-            <th></th>
-          </thead>
-          <tbody *ngFor="let item of itemsReceta ; let i = index">
-            <tr>
-              <td>{{item.nombre}}</td>
-              <td>{{item.importe}}</td>
-              <td><button (click)="borrarItem(i)" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button></td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-
-      <div class="ml-2 col-12 form-group form-check">
-        <input #checkOb type="checkbox" class="form-check-input">
-        <label class="form-check-label">Confirmar</label>
-      </div>
-
-      <div class="ml-2 form-group">
-        <button [disabled]="formObraSocial.valid == false && checkOb.checked == false " class="btn btn-primary btn-sm"
-          type="submit">Agregar Receta</button>
-      </div>
-
-    </form>
-
-  </div>
-
-  <p-toast [style]="{marginTop: '80px'}" position="top-center" key="tc"></p-toast>
-  <p-toast [style]="{marginTop: '80px'}" key="custom" position="bottom-center"></p-toast>
+  <p-toast [style]="{marginTop: '80px'}" position="bottom-center" key="tc"></p-toast>
+  <p-toast [style]="{marginTop: '80px'}" key="custom" position="top-center"></p-toast>
 
 
 </div>

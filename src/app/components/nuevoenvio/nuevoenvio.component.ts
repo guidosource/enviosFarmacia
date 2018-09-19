@@ -39,7 +39,7 @@ export class NuevoenvioComponent implements OnInit {
   constructor(private _clienteServices: ClienteServices) {
 
     let fecha = new Date();
-    let item1 = new Particular('rivotril 0.5 x 60', 208.50);
+    let item1 = new Particular('rivotril 0.5 x 60', 208.50, 1);
     let item2 = new ObraSocial('Osde', fecha, '544413', []);
 
     this.tablaItems.push(item1, item2);

@@ -87,17 +87,35 @@
             </thead>
             <tbody *ngFor="let item of tablaItems ; let i = index">
               <tr>
-                <div *ngIf="item.constructor.name === 'Particular'; then nombreParticular else nombreOSocial" ></div>
-                <ng-template #nombreParticular><td>{{item.nombre | titlecase}}</td></ng-template>
-                <ng-template #nombreOSocial><td>{{item.obraSocial | titlecase}}</td></ng-template>
-                
+                <div *ngIf="item.constructor.name === 'Particular'; then nombreParticular else nombreOSocial"></div>
+                <ng-template #nombreParticular>
+                  <td>{{item.nombre | titlecase}}</td>
+                </ng-template>
+                <ng-template #nombreOSocial>
+                  <td>{{item.obraSocial | titlecase}}</td>
+                </ng-template>
+
                 <td>{{item.cantidad}}</td>
                 <td>{{item.importe}}</td>
 
-                <div *ngIf="item.constructor.name === 'ObraSocial'; then detalleParticular else detalleOSocial" ></div>
-                <ng-template #detalleParticular><td><button class="btn btn-link">Ver</button></td></ng-template>
-                <ng-template #detalleOSocial><td><button class="btn btn-link" disabled="disabled">Ver</button></td></ng-template>
-                
+                <div *ngIf="item.constructor.name === 'ObraSocial'; then detalleParticular else detalleOSocial"></div>
+                <ng-template #detalleParticular>
+                  <td>
+                    <button class="btn btn-link" data-toggle="collapse" data-target="#multiCollapseExample2"
+                      aria-expanded="false" aria-controls="multiCollapseExample2">Ver</button>
+
+                    <div class="collapse multi-collapse" id="multiCollapseExample2">
+                      <div class="card card-body">
+                        <div *ngFor="let i of item.items">{{i.nombre}}</div>
+                      </div>
+                    </div>
+
+                  </td>
+                </ng-template>
+                <ng-template #detalleOSocial>
+                  <td><button class="btn btn-link" disabled="disabled">Ver</button></td>
+                </ng-template>
+
                 <td>
                   <button (click)="eliminarItem(i)" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>
                 </td>
@@ -164,7 +182,8 @@
 
  -->
 <!-- Large Modal -->
-<div *ngIf="crearItemsModal" (onHidden)="cerrarItemsModal()"   bsModal [config]="{ignoreBackdropClick: true, show: true}" #lgModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="dialog-sizes-name1">
+<div *ngIf="crearItemsModal" (onHidden)="cerrarItemsModal()" bsModal [config]="{ignoreBackdropClick: true, show: true}"
+  #lgModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="dialog-sizes-name1">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">

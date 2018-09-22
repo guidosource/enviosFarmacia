@@ -1,0 +1,84 @@
+<div class="row container animated fadeIn fast">
+
+  <form class="row container sombra my-2" [formGroup]="form" novalidate="novalidate" (ngSubmit)="agregarReceta()">
+
+    <div class="col-6 form-group">
+      <label>Obra Social <small>(*)</small></label>
+      <select class="mt-2 custom-select" formControlName="osocial">
+        <option *ngFor="let ob of obrasSociales" [value]="ob">{{ob | titlecase}}</option>
+      </select>
+    </div>
+
+    <div class="col-6 form-group">
+      <label for="">Fecha Receta <small>(*)</small></label>
+      <input class="form-control" type="date" formControlName="fecha">
+    </div>
+
+    <div class="col-6 form-group">
+      <label for="">Matrícula del médico <small>(*)</small></label>
+      <input class="form-control" type="text" placeholder="Matricula" formControlName="matricula">
+    </div>
+
+    <div class="col-6 form-group">
+      <label for="">Dato adicional</label>
+      <input class="form-control" type="text" placeholder="Dato adicional" formControlName="adicional">
+    </div>
+
+    <div class="col-12 mt-2 mb-4">
+      <table class="table">
+        <thead>
+          <th>Nombre</th>
+          <th>Cantidad</th>
+          <th>Importe</th>
+          <th></th>
+        </thead>
+        <small *ngIf="itemsReceta.length === 0" style="color: red">Debe ingresar al menos un item</small>
+        <tbody *ngFor="let item of itemsReceta ; let i = index">
+          <tr>
+            <td>{{item.nombre}}</td>
+            <td>{{item.cantidad}}</td>
+            <td>{{item.importe}}</td>
+            <td><button (click)="borrarItem(i)" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button></td>
+          </tr>
+        </tbody>
+        <button (click)="abrirModal()">Agregar Items</button>
+      </table>
+    </div>
+
+    <div class="ml-2 col-12 form-group form-check">
+      <input [disabled]="itemsReceta.length === 0" #checkOb type="checkbox" class="form-check-input">
+      <label class="form-check-label">Confirmar</label>
+    </div>
+
+    <div class="col-12 form-group">
+      <small>(*) Campos obligatorios.</small>
+    </div>
+
+    <div class="ml-2 form-group">
+      <button [disabled]="(form.valid === false) || (checkOb.checked === false) " class="btn btn-primary btn-sm" type="submit">Agregar
+        Receta</button>
+    </div>
+
+  </form>
+
+
+</div>
+
+
+<!-- Carga Items Modal -->
+<div *ngIf="crearAgregarItems" (onHidden)="cerrarModal()" bsModal [config]="{ignoreBackdropClick: true, show: true}"
+  #agregarModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="dialog-sizes-name1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+        <button type="button" class="close pull-right" (click)="agregarModal.hide()" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <div class="container">
+          <app-particular></app-particular>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

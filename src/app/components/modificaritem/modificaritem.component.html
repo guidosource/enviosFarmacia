@@ -1,0 +1,35 @@
+<div class="container">
+
+  <div *ngIf="item.constructor.name === 'Particular' ; then particular else obraSocial"></div>
+
+  <ng-template #particular>
+
+    <div class="row">
+
+      <div class="col-12">
+
+        <app-particular [item]="item"></app-particular>
+
+      </div>
+
+    </div>
+
+
+  </ng-template>
+
+  <ng-template #obraSocial>
+
+    <div class="row">
+
+      <div class="col-12">
+
+        <app-obrasocial></app-obrasocial>
+
+      </div>
+
+    </div>
+
+
+  </ng-template>
+
+</div>

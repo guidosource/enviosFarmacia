@@ -27,6 +27,9 @@ import { UsuarioServices } from './services/usuario.services';
 import { AppRoutingModule } from './app.routes';
 import { NuevoenvioComponent } from './components/nuevoenvio/nuevoenvio.component';
 import { AgregaritemComponent } from './components/agregaritem/agregaritem.component';
+import { ModificaritemComponent } from './components/modificaritem/modificaritem.component';
+import { ParticularComponent } from './components/form/particular/particular.component';
+import { ObrasocialComponent } from './components/form/obrasocial/obrasocial.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +39,10 @@ import { AgregaritemComponent } from './components/agregaritem/agregaritem.compo
     HeaderComponent,
     AgendaComponent,
     NuevoenvioComponent,
-    AgregaritemComponent
+    AgregaritemComponent,
+    ModificaritemComponent,
+    ParticularComponent,
+    ObrasocialComponent
   ],
   imports: [
     BrowserModule,

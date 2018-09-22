@@ -97,25 +97,11 @@
 
                 <td>{{item.cantidad}}</td>
                 <td>{{item.importe}}</td>
-
-                <div *ngIf="item.constructor.name === 'ObraSocial'; then detalleParticular else detalleOSocial"></div>
-                <ng-template #detalleParticular>
-                  <td>
-                    <button class="btn btn-link" data-toggle="collapse" data-target="#multiCollapseExample2"
-                      aria-expanded="false" aria-controls="multiCollapseExample2">Ver</button>
-
-                    <div class="collapse multi-collapse" id="multiCollapseExample2">
-                      <div class="card card-body">
-                        <div *ngFor="let i of item.items">{{i.nombre}}</div>
-                      </div>
-                    </div>
-
-                  </td>
-                </ng-template>
-                <ng-template #detalleOSocial>
-                  <td><button class="btn btn-link" disabled="disabled">Ver</button></td>
-                </ng-template>
-
+                
+                <td>
+                  <button class="btn btn-link" (click)="abrirDetalleModal(item)">Ver</button>
+                </td>
+              
                 <td>
                   <button (click)="eliminarItem(i)" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>
                 </td>
@@ -181,7 +167,32 @@
 </ng-template>
 
  -->
-<!-- Large Modal -->
+
+<!-- Detalle modal -->
+<button (click)="abrirDetalleModal()" type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-sm">Small
+  modal</button>
+
+  <div *ngIf="crearDetalleModal" (onHidden)="cerrarDetalleModal()" bsModal [config]="{ignoreBackdropClick: true, show: true}"
+  #detalleModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="dialog-sizes-name1">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 id="dialog-sizes-name2" class="modal-title pull-left">Detalle</h5>
+        <button type="button" class="close pull-right" (click)="detalleModal.hide()" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <app-modificaritem [item]="itemSeleccionado"></app-modificaritem>
+      </div>
+      <div class="modal-footer">
+        <button>Ok</button><button>Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Carga Items Modal -->
 <div *ngIf="crearItemsModal" (onHidden)="cerrarItemsModal()" bsModal [config]="{ignoreBackdropClick: true, show: true}"
   #lgModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="dialog-sizes-name1">
   <div class="modal-dialog modal-lg">

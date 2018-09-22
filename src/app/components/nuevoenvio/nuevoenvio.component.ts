@@ -31,10 +31,15 @@ export class NuevoenvioComponent implements OnInit {
 
   clienteSeleccionado: any;
 
+  // items
+  itemSeleccionado: Item;
+
   // MODAL
-  // agregarItemsModal: BsModalRef;
   @ViewChild('lgModal') itemsModal: ModalDirective;
   crearItemsModal: boolean;
+
+  @ViewChild('detalleModal') detalleModal: ModalDirective;
+  crearDetalleModal: boolean;
 
   constructor(private _clienteServices: ClienteServices) {
 
@@ -64,6 +69,10 @@ export class NuevoenvioComponent implements OnInit {
 
     this.tablaItems.splice(index, 1);
 
+  }
+
+  seleccionarItem ( item: Item ) {
+    this.itemSeleccionado = item;
   }
 
 
@@ -125,7 +134,14 @@ export class NuevoenvioComponent implements OnInit {
     this.crearItemsModal = false;
   }
 
+  abrirDetalleModal(item: Item) {
+    this.seleccionarItem(item);
+    this.crearDetalleModal = true;
+  }
 
+  cerrarDetalleModal() {
+    this.crearDetalleModal = false;
+  }
 
   limpiarMensaje() {
     this.msgs = [];

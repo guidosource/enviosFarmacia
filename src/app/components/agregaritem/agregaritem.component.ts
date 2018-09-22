@@ -1,5 +1,5 @@
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { Particular, ObraSocial } from '../../classes/Item';
 import { MessageService } from 'primeng/api';
 import { UsuarioServices } from '../../services/usuario.services';
@@ -14,11 +14,11 @@ import { UsuarioServices } from '../../services/usuario.services';
 export class AgregaritemComponent implements OnInit {
 
   @Output() respuesta: EventEmitter<any>;
-
+  
   // Obras Sociales
   obrasSociales: string[];
 
-  // Tipo de carga (PARTICULA U OBRA SOCIAL)
+  // Tipo de carga (PARTICULAR U OBRA SOCIAL)
   tipo: string;
 
   // Controles Formulario
@@ -26,9 +26,18 @@ export class AgregaritemComponent implements OnInit {
   formObraSocial: FormGroup;
 
   // Carga Items Receta
-  itemsReceta: Particular[] = [];  
+  itemsReceta: Particular[] = [];
 
   constructor(private _messageService: MessageService, private _usuarioServices: UsuarioServices) {
+
+    // this.fechaHoy = new Date();
+    // this.fechaLimite = new Date();
+    // t his.fechaLimite.setDate(this.fechaLimite.getDate() - 31);
+
+    // this.fechaI = `${this.fechaHoy.getFullYear()}-${this.fechaHoy.getMonth()}-${this.fechaHoy.getDate()}`;
+    
+
+   // this.fechaHoy = this.fechaHoy.toString();
 
     this.obrasSociales = this._usuarioServices.obrasSociales;
 
@@ -40,7 +49,7 @@ export class AgregaritemComponent implements OnInit {
       'cantidad': new FormControl('', [Validators.minLength(1), Validators.maxLength(61)]),
       'importe': new FormControl('', [Validators.required, Validators.pattern('^[0-9]+([.][0-9]+)?$'),
       Validators.minLength(1), Validators.maxLength(61)]),
-      'multiplicador' : new FormControl('1', [Validators.required, Validators.minLength(1), Validators.maxLength(99)])
+      'multiplicador': new FormControl('1', [Validators.required, Validators.minLength(1), Validators.maxLength(99)])
 
     });
 
@@ -52,7 +61,11 @@ export class AgregaritemComponent implements OnInit {
     });
 
 
+    // console.log(this.test2(new Date(), 365));
+
+
   }
+
 
   ngOnInit() {
   }
@@ -63,7 +76,7 @@ export class AgregaritemComponent implements OnInit {
     let itemImporte = this.formParticular.value.importe * this.formParticular.value.multiplicador;
     let importeFinal = itemImporte.toString().match(/^-?\d+(?:\.\d{0,2})?/)[0];
 
-    if ( this.formParticular.value.cantidad ) {
+    if (this.formParticular.value.cantidad) {
       itemNombre = itemNombre + ` x ${this.formParticular.value.cantidad}`;
     }
 
@@ -111,12 +124,11 @@ export class AgregaritemComponent implements OnInit {
 
     let ultItem = this.itemsReceta[this.itemsReceta.length - 1];
 
-    this._messageService.add({ key: 'tc', severity: 'success', summary: 'Item agregado',
-     detail: `Se agrego: ${ultItem.nombre} Cantidad: ${ultItem.cantidad}` });
+    this._messageService.add({
+      key: 'tc', severity: 'success', summary: 'Item agregado',
+      detail: `Se agrego: ${ultItem.nombre} Cantidad: ${ultItem.cantidad}`
+    });
   }
 
-  test() {
-    console.log(this.tipo);
-  }
 
 }

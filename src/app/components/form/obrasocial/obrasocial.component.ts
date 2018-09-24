@@ -1,8 +1,9 @@
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, ViewChild, Input } from '@angular/core';
 import { UsuarioServices } from '../../../services/usuario.services';
 import { Particular, ObraSocial } from '../../../classes/Item';
 import { MessageService } from 'primeng/api';
+import { ModalDirective } from 'ngx-bootstrap/modal';
 
 @Component({
   selector: 'app-obrasocial',
@@ -11,10 +12,15 @@ import { MessageService } from 'primeng/api';
 })
 export class ObrasocialComponent implements OnInit {
 
+  @Input() receta: ObraSocial;
   @Output() respuesta: EventEmitter<any>;
+  @ViewChild('agregarModal') agregarModal: ModalDirective;
+
+  // Modidficar
+  modificar: boolean;
 
   // Obras Sociales
-  obrasSociales: string[];
+  obrasSociales;
 
   // Carga Items Receta
   itemsReceta: Particular[] = [];
@@ -24,32 +30,50 @@ export class ObrasocialComponent implements OnInit {
   // Modal agregarItems
   crearAgregarItems: boolean;
 
+  fechaHoy;
+  fechaLimite;
+  
   constructor(private _usuarioServices: UsuarioServices, private _messageService: MessageService) {
+    
+    this.definirFechas();
+
+    // console.log(this.fechaHoy.toLocaleDateString('es-ARG', {year: 'numeric', day: '2-digit', month: '2-digit'}));
+
+    this.obrasSociales = this._usuarioServices.obrasSociales;
 
     this.respuesta = new EventEmitter();
 
     this.form = new FormGroup({
       'osocial': new FormControl('', [Validators.required]),
-      'fecha': new FormControl('', [Validators.required]),
+      'fecha': new FormControl(this.fechaHoy, [Validators.required]),
       'matricula': new FormControl('', [Validators.required]),
       'adicional': new FormControl('', [Validators.maxLength(61)])
     });
+    
+  }
 
+  private definirFechas() {
+     const fecha = new Date();
+     const fechaLimite = new Date();
+     fechaLimite.setDate(fechaLimite.getDate() - 31);
+     this.fechaHoy = fecha.toLocaleDateString('es-ARG', {year: 'numeric', day: '2-digit', month: '2-digit'});
+     this.fechaLimite = fechaLimite.toLocaleDateString('es-ARG', {year: 'numeric', day: '2-digit', month: '2-digit'});
   }
 
   agregarItem(item: Particular) {
 
     this.itemsReceta.push(item);
 
-    this.showSuccess();
+    this.agregarModal.hide();
 
+    this.showSuccess();
 
   }
 
   borrarItem(index: number) {
 
     this._messageService.add({
-      key: 'custom', severity: 'error', summary: 'Item eliminado',
+      key: 'tc', severity: 'error', summary: 'Item eliminado',
       detail: `Se elimino: ${this.itemsReceta[index].nombre}`
     });
 
@@ -57,7 +81,7 @@ export class ObrasocialComponent implements OnInit {
   }
 
   showSuccess() {
-
+  
     const ultItem = this.itemsReceta[this.itemsReceta.length - 1];
 
     this._messageService.add({
@@ -85,6 +109,17 @@ export class ObrasocialComponent implements OnInit {
   }
 
   ngOnInit() {
+
+    if ( this.receta ) {
+      this.form.get('osocial').setValue(this.receta.obraSocial);
+      this.form.get('fecha').setValue(this.receta.fecha);
+      this.form.get('matricula').setValue(this.receta.matricula);
+      this.form.get('adicional').setValue(this.receta.adicional);
+      this.itemsReceta = this.receta.items;
+
+      this.modificar = true;
+    }
+
   }
 
 }

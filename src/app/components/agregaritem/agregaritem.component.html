@@ -8,7 +8,23 @@
     </select>
   </div>
 
-  <div class="row sombra my-5 animated fadeIn fast" *ngIf="tipo.value == 'osocial'">
+  <div *ngIf="tipo.value === 'osocial'; then oSocial else particular"  class="row my-5"></div>
+
+  <ng-template #oSocial>
+
+    <app-obrasocial></app-obrasocial> 
+
+  </ng-template>
+
+  <ng-template #particular>
+
+    <app-particular></app-particular> 
+
+  </ng-template>
+
+</div>
+
+  <!-- <div class="row sombra my-5 animated fadeIn fast" *ngIf="tipo.value == 'osocial'">
 
     <div class="col-12 my-2 ">
       <strong>Carga Receta</strong>
@@ -130,4 +146,4 @@
   <p-toast [style]="{marginTop: '80px'}" key="custom" position="top-center"></p-toast>
 
 
-</div>
+ -->

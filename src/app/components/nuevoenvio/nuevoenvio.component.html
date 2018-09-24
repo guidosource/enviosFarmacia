@@ -185,9 +185,6 @@
       <div class="modal-body">
         <app-modificaritem [item]="itemSeleccionado"></app-modificaritem>
       </div>
-      <div class="modal-footer">
-        <button>Ok</button><button>Cerrar</button>
-      </div>
     </div>
   </div>
 </div>
@@ -204,7 +201,33 @@
         </button>
       </div>
       <div class="modal-body">
-        <app-agregaritem (respuesta)="agregarItem($event)"></app-agregaritem>
+        
+        <div class="container">
+
+            <div class="row my-2">
+              <label>Tipo</label>
+              <select class="custom-select" #tipo>
+                <option value="particular">Particular</option>
+                <option value="osocial">Obra Social</option>
+              </select>
+            </div>
+          
+            <div *ngIf="tipo.value === 'osocial'; then oSocial else particular"  class="row my-5"></div>
+          
+            <ng-template #oSocial>
+          
+              <app-obrasocial (respuesta)="agregarItem($event)"></app-obrasocial> 
+          
+            </ng-template>
+          
+            <ng-template #particular>
+          
+              <app-particular (respuesta)="agregarItem($event)" ></app-particular> 
+          
+            </ng-template>
+          
+          </div>
+
       </div>
     </div>
   </div>

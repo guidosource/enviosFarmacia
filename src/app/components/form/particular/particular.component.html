@@ -1,47 +1,49 @@
-<div class="row container animated fadeIn fast">
+<div class="container sombra">
+    <div class="row">
 
-    <form class="row container sombra my-2" [formGroup]="form" novalidate="novalidate" (ngSubmit)="agregarItem()">
-
-      <div class="col-6 form-group">
-        <label>Producto <small>(*)</small></label>
-        <input class="form-control" type="text" formControlName="nombre" placeholder="Nombre del producto">
-      </div>
-
-      <div class="col-6 form-group">
-        <label>Presentación (Gramaje)</label>
-        <input [attr.disabled]="modificar" class="form-control" type="text" formControlName="gramaje" placeholder="Gramaje">
-      </div>
-
-      <div class="col-6 form-group">
-        <label>Presentación (Cantidad)</label>
-        <input [attr.disabled]="modificar" class="form-control" type="text" formControlName="cantidad" placeholder="Cantidad">
-      </div>
-
-      <div class="col-6 form-group">
-        <label>Importe <small>(*)</small></label>
-        <input class="form-control" type="text" formControlName="importe" placeholder="Ingrese el importe">
-      </div>
-
-      <div class="col-3 form-group">
-        <label>Cantidad</label>
-        <input class="form-control" type="number" min="1" max="99" formControlName="multiplicador">
-      </div>
-
-      <div class="col-12 form-group">
-        <label>Importe Total</label>
-        <p>
-          <span>$ {{form.value.importe * form.value.multiplicador | number:'1.0-2'}}</span>
-        </p>
-      </div>
-
-      <div class="col-12 form-group">
-        <small>(*) Campos obligatorios.</small>
-      </div>
-
-      <div class="col-12 ml-2 form-group">
-        <button [disabled]=" form.valid  == false " class="btn btn-primary btn-sm" type="submit">Agregar</button>
-      </div>
-
-    </form>
+      <form class="col row my-2" [formGroup]="form" novalidate="novalidate" (ngSubmit)="agregarItem()">
+  
+        <div class="col-6 form-group">
+          <label>Producto <small>(*)</small></label>
+          <input class="form-control" type="text" formControlName="nombre" placeholder="Nombre del producto">
+        </div>
+  
+        <div class="col-6 form-group">
+          <label>Presentación (Gramaje)</label>
+          <input [attr.disabled]="modificar" class="form-control" type="text" formControlName="gramaje" placeholder="Gramaje">
+        </div>
+  
+        <div class="col-6 form-group">
+          <label>Presentación (Cantidad)</label>
+          <input [attr.disabled]="modificar" class="form-control" type="text" formControlName="cantidad" placeholder="Cantidad">
+        </div>
+  
+        <div class="col-6 form-group">
+          <label>Importe <small>(*)</small></label>
+          <input class="form-control" type="text" formControlName="importe" placeholder="Ingrese el importe">
+        </div>
+  
+        <div class="col-3 form-group">
+          <label>Cantidad</label>
+          <input class="form-control" type="number" min="1" max="99" formControlName="multiplicador">
+        </div>
+  
+        <div class="col-12 form-group">
+          <label>Importe Total</label>
+          <p>
+            <span>$ {{form.value.importe * form.value.multiplicador | number:'1.0-2'}}</span>
+          </p>
+        </div>
+  
+        <div class="col-12 form-group">
+          <small>(*) Campos obligatorios.</small>
+        </div>
+  
+        <div class="col-12 ml-2 form-group">
+          <button [disabled]=" form.valid  == false " class="btn btn-primary btn-sm" type="submit">Agregar</button>
+        </div>
+  
+      </form>
+    </div>
 
   </div>

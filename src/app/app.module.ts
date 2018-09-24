@@ -12,11 +12,15 @@ import { MessageService } from 'primeng/api';
 
 // Componentes
 import { AppComponent } from './app.component';
-import { AltaclienteComponent } from './components/altacliente/altacliente.component';
+import { AltaclienteComponent } from './components/form/altacliente/altacliente.component';
 import { PendientesComponent } from './components/pendientes/pendientes.component';
 import { HeaderComponent } from './shared/header/header.component';
 import { AgendaComponent } from './components/agenda/agenda.component';
-
+import { NuevoenvioComponent } from './components/nuevoenvio/nuevoenvio.component';
+import { AgregaritemComponent } from './components/agregaritem/agregaritem.component';
+import { ModificaritemComponent } from './components/modificaritem/modificaritem.component';
+import { ParticularComponent } from './components/form/particular/particular.component';
+import { ObrasocialComponent } from './components/form/obrasocial/obrasocial.component';
 
 // Servicios
 import { GlobalServices } from './services/global.services';
@@ -25,11 +29,6 @@ import { UsuarioServices } from './services/usuario.services';
 
 // Rutas
 import { AppRoutingModule } from './app.routes';
-import { NuevoenvioComponent } from './components/nuevoenvio/nuevoenvio.component';
-import { AgregaritemComponent } from './components/agregaritem/agregaritem.component';
-import { ModificaritemComponent } from './components/modificaritem/modificaritem.component';
-import { ParticularComponent } from './components/form/particular/particular.component';
-import { ObrasocialComponent } from './components/form/obrasocial/obrasocial.component';
 
 @NgModule({
   declarations: [

@@ -139,9 +139,9 @@
   <hr>
 
   <div class="row">
-    <div class="form-check col-3 my-2">
-      <input class="form-check-input" type="checkbox">
+    <div class="form-control col-3 my-2">
       <label class="form-check-label">Cargo Envio</label>
+      <input type="text" placeholder="">
     </div>
     <div class="col-12 my-2">
       <span>Importe Total: </span>
@@ -220,7 +220,7 @@
           
             </ng-template>
           
-            <ng-template #particular>
+            <ng-template class="animated fadeIn fast" #particular>
           
               <app-particular (respuesta)="agregarItem($event)" ></app-particular> 
           

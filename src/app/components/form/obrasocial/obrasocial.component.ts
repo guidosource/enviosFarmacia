@@ -91,7 +91,7 @@ export class ObrasocialComponent implements OnInit {
   }
 
   agregarReceta() {
-
+    
     const datos = this.form.value;
 
     const receta = new ObraSocial(datos.osocial, datos.fecha, datos.matricula, this.itemsReceta, datos.adicional);

@@ -1,7 +1,7 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
-import { Cliente } from './../../classes/Cliente';
+import { Cliente } from '../../../classes/Cliente';
 
 
 @Component({

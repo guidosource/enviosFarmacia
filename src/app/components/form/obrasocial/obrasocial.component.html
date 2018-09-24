@@ -1,4 +1,4 @@
-<div class="container sombra">
+<div class="container sombra animated fadeIn fast">
 
   <div class="row">
 
@@ -55,7 +55,7 @@
       </div>
 
       <div class="col-12 my-2">
-        <button class="btn btn-primary btn-sm" (click)="abrirModal()">Agregar Item</button>
+        <button class="btn btn-primary btn-sm" type="button" (click)="abrirModal()">Agregar Item</button>
       </div>
 
       <div class="ml-2 col-12 my-2 form-group form-check">
@@ -88,7 +88,7 @@
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
-        Items
+        <strong>Items</strong>
         <button type="button" class="close pull-right" (click)="agregarModal.hide()" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
